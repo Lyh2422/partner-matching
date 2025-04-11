@@ -9,7 +9,7 @@ use lyh;
 create table user
 (
     username     varchar(256) null comment '用户昵称',
-    id           bigint auto_increment comment 'id'
+    id           bigint auto_increment comment '用户id'
         primary key,
     userAccount  varchar(256) null comment '账号',
     avatarUrl    varchar(1024) null comment '用户头像',
@@ -32,7 +32,7 @@ create table team
     id          bigint auto_increment comment 'id' primary key,
     name        varchar(256)       not null comment '队伍名称',
     description varchar(1024) null comment '描述',
-    maxNum      int      default 1 not null comment '最大人数',
+    maxNum      int      default 1 not null comment '最大人数 默认人数为1-自己',
     expireTime  datetime null comment '过期时间',
     userId      bigint comment '用户id（队长 id）',
     status      int      default 0 not null comment '0 - 公开，1 - 私有，2 - 加密',

@@ -26,25 +26,31 @@ public class RedissonTest {
     @Test
     void test() {
         // list，数据存在本地 JVM 内存中
-        List<String> list = new ArrayList<>();
-        list.add("yupi");
-        System.out.println("list:" + list.get(0));
+        List<String> list=new ArrayList<>();
+        list.add("xunyu");
+        System.out.println("list:"+list.get(0));
 
-        list.remove(0);
+//        list.remove(0);
 
-        // 数据存在 redis 的内存中
-        RList<String> rList = redissonClient.getList("test-list");
-        rList.add("yupi");
-        System.out.println("rlist:" + rList.get(0));
+        //数据存在redis里
+        RList<String> rList=redissonClient.getList("test-list");//name相当于Key 后面add的是value
+//        rList.add("xunyu");
+        rList.get(0);
+
+        System.out.println("rlist:"+rList.get(0));
         rList.remove(0);
 
-        // map
-        Map<String, Integer> map = new HashMap<>();
-        map.put("yupi", 10);
-        map.get("yupi");
+        //map
+        Map<String,Integer> map=new HashMap<>();
+        map.put("xunyu",20);
+        map.get("xunyu");
+        System.out.println("map:"+map);
 
-        RMap<Object, Object> map1 = redissonClient.getMap("test-map");
-
+        RMap<String, String> rMap = redissonClient.getMap("test-map");
+//        rMap.put("xunyu","xiaomidi");
+        rMap.get("xunyu");
+        rMap.remove("xunyu");
+        System.out.println("rmap:"+rMap);
         // set
 
         // stack
@@ -52,7 +58,6 @@ public class RedissonTest {
 
     }
 
-    // [编程知识星球](https://yupi.icu) 连接万名编程爱好者，一起优秀！20000+ 小伙伴交流分享、100+ 各方向编程交流群、40+ 大厂嘉宾一对一答疑、4000+ 编程问答参考
 
     @Test
     void testWatchDog() {

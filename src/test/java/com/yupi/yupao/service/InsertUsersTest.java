@@ -68,8 +68,8 @@ public class InsertUsersTest {
             while (true) {
                 j++;
                 User user = new User();
-                user.setUsername("假鱼皮");
-                user.setUserAccount("fakeyupi");
+                user.setUsername("假熏鱼");
+                user.setUserAccount("fakexunyu");
                 user.setAvatarUrl("https://636f-codenav-8grj8px727565176-1256524210.tcb.qcloud.la/img/logo.png");
                 user.setGender(0);
                 user.setUserPassword("12345678");
@@ -96,4 +96,5 @@ public class InsertUsersTest {
         stopWatch.stop();
         System.out.println(stopWatch.getTotalTimeMillis());
     }
+
 }

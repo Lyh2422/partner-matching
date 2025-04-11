@@ -1,8 +1,11 @@
 package com.yupi.yupao.model.enums;
 
+import lombok.Data;
+
 /**
  * 队伍状态枚举
  */
+//enum枚举类不能用Data注解
 public enum TeamStatusEnum {
 
     PUBLIC(0, "公开"),
@@ -13,7 +16,6 @@ public enum TeamStatusEnum {
 
     private String text;
 
-    // 原_创 [鱼_皮](https://github.com/liyupi)
 
     public static TeamStatusEnum getEnumByValue(Integer value) {
         if (value == null) {

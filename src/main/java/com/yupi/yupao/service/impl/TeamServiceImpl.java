@@ -73,7 +73,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         if (maxNum < 1 || maxNum > 20) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍人数不满足要求");
         }
-        //   2. 队伍标题 <= 20
+        //   2. 队伍名称 <= 20
         String name = team.getName();
         if (StringUtils.isBlank(name) || name.length() > 20) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍标题不满足要求");
