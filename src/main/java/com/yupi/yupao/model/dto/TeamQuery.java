@@ -25,7 +25,7 @@ public class TeamQuery extends PageRequest {
     private List<Long> idList;
 
     /**
-     * 搜索关键词（同时对队伍名称和描述搜索）
+     * 搜索关键词（同时对队伍名称和描述搜索）可以通过searchText搜索 也可以通过name和description搜索
      */
     private String searchText;
 

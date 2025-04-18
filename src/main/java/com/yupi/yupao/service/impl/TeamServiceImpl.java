@@ -117,7 +117,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         if (!result || teamId == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "创建队伍失败");
         }
-        // 9. 插入用户  => 队伍关系到关系表
+        // 9. 插入用户  => 队伍关系 到 关系表
         UserTeam userTeam = new UserTeam();
         userTeam.setUserId(userId);
         userTeam.setTeamId(teamId);
@@ -142,6 +142,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
             if (CollectionUtils.isNotEmpty(idList)) {
                 queryWrapper.in("id", idList);
             }
+            //同时通过name和description来查询
             String searchText = teamQuery.getSearchText();
             if (StringUtils.isNotBlank(searchText)) {
                 queryWrapper.and(qw -> qw.like("name", searchText).or().like("description", searchText));
@@ -155,16 +156,16 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
                 queryWrapper.like("description", description);
             }
             Integer maxNum = teamQuery.getMaxNum();
-            // 查询最大人数相等的
+            // 查询 最大人数相等的
             if (maxNum != null && maxNum > 0) {
                 queryWrapper.eq("maxNum", maxNum);
             }
             Long userId = teamQuery.getUserId();
-            // 根据创建人来查询
+            // 根据 创建人 来查询
             if (userId != null && userId > 0) {
                 queryWrapper.eq("userId", userId);
             }
-            // 根据状态来查询
+            // 根据 状态 来查询
             Integer status = teamQuery.getStatus();
             TeamStatusEnum statusEnum = TeamStatusEnum.getEnumByValue(status);
             if (statusEnum == null) {
@@ -203,6 +204,12 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         return teamUserVOList;
     }
 
+    /**
+     * 更新队伍信息
+     * @param teamUpdateRequest
+     * @param loginUser
+     * @return
+     */
     @Override
     public boolean updateTeam(TeamUpdateRequest teamUpdateRequest, User loginUser) {
         if (teamUpdateRequest == null) {
